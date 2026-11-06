@@ -1,0 +1,114 @@
+.page {
+  min-height: 100vh;
+  background: var(--page-bg);
+  color: var(--text);
+  transition: background-color .2s, color .2s;
+}
+
+.main {
+  width: min(100%, 1440px);
+  min-height: calc(100vh - 70px);
+  margin: 0 auto;
+  padding: 36px 48px 80px;
+}
+
+.titleRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 22px;
+}
+
+.title {
+  font-size: 25px;
+  font-weight: 800;
+  letter-spacing: -.8px;
+}
+
+.addGoal {
+  display: flex;
+  min-width: 200px;
+  height: 40px;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 0 14px;
+  border: 0;
+  border-radius: 7px;
+  background: #2372bc;
+  color: white;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.addGoal:hover { background: #1b639f; }
+
+.goalForm {
+  display: flex;
+  gap: 8px;
+  padding: 12px;
+  margin: -8px 0 18px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--surface);
+}
+
+.goalForm input {
+  min-width: 0;
+  flex: 1;
+  padding: 9px 11px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--surface);
+  color: var(--text);
+  font-size: 13px;
+}
+
+.goalForm button {
+  padding: 8px 16px;
+  border: 0;
+  border-radius: 6px;
+  background: var(--blue);
+  color: white;
+  font-size: 13px;
+}
+
+.goalForm button:disabled { cursor: not-allowed; opacity: .5; }
+.goalForm .cancel { background: var(--surface-blue); color: var(--text); }
+
+.curriculum { margin-top: 32px; }
+.sectionTitle { margin-bottom: 14px; font-size: 16px; font-weight: 700; }
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  align-items: start;
+  gap: 14px;
+}
+
+@media (max-width: 1000px) {
+  .main { padding-inline: 28px; }
+  .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 700px) {
+  .main {
+    min-height: calc(100vh - 70px);
+    padding: 26px 18px 56px;
+  }
+
+  .titleRow {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .title { font-size: 22px; }
+  .addGoal { min-width: 0; width: 100%; }
+  .goalForm { flex-wrap: wrap; }
+  .goalForm input { flex-basis: 100%; }
+  .goalForm button { flex: 1; }
+  .curriculum { margin-top: 28px; }
+  .grid { grid-template-columns: 1fr; gap: 11px; }
+}
