@@ -30,7 +30,12 @@ export default function CurriculumCard({
   }
 
   return (
-    <article className={styles.card}>
+    <article className={styles.card} onKeyDown={event => {
+      if (event.key === 'Escape' && !addingLesson) {
+        setOpen(false);
+        event.currentTarget.querySelector('[aria-controls]')?.focus();
+      }
+    }}>
       <div className={styles.heading}>
         <button
           className={styles.toggle}
@@ -44,17 +49,11 @@ export default function CurriculumCard({
           <span className={styles.count}>
             {completed} / {chapter.lessons.length}개 완료
           </span>
-          <svg
-            className={`${styles.chevron} ${open ? styles.rotated : ''}`}
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            aria-hidden="true"
-          >
-            <path d="m5 9 7 7 7-7" />
-          </svg>
         </button>
+        <svg className={`${styles.chevron} ${open ? styles.rotated : ''}`}
+          viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
+          <path d="m5 9 7 7 7-7" />
+        </svg>
         <button
           className={styles.removeChapter}
           type="button"
@@ -95,7 +94,10 @@ export default function CurriculumCard({
                 aria-label={`${lesson.title} 삭제`}
                 title="항목 삭제"
               >
-                ×
+                <svg viewBox="0 0 16 16" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true">
+                  <circle cx="8" cy="8" r="6" />
+                  <path d="m6 6 4 4m0-4-4 4" />
+                </svg>
               </button>
             </div>
           ))}

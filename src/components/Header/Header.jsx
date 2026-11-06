@@ -1,4 +1,5 @@
 import pythonIcon from '../../assets/python.svg';
+import logo from '../../assets/logo.svg';
 import styles from './Header.module.css';
 
 export default function Header({ darkMode, onToggleTheme }) {
@@ -9,16 +10,7 @@ export default function Header({ darkMode, onToggleTheme }) {
       <div className={styles.inner}>
         <a href="/" className={styles.brand} aria-label="차곡 홈">
           <span className={styles.brandMark} aria-hidden="true">
-            <svg
-              viewBox="0 0 24 24"
-              width="18"
-              height="18"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-            >
-              <path d="M5 5h12l3 3v11H5zM5 8h15M9 12h7M9 15h5" />
-            </svg>
+            <img className={styles.logo} src={logo} alt="" width="109" height="35" />
           </span>
           <span className={styles.brandName}>차곡.</span>
         </a>

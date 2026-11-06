@@ -1,17 +1,36 @@
 import { useEffect, useState } from 'react';
 import CurriculumCard from '../../components/CurriculumCard/CurriculumCard.jsx';
 import Header from '../../components/Header/Header.jsx';
+import AddGoalModal from '../../components/AddGoalModal/AddGoalModal.jsx';
 import ProgressSummary from '../../components/ProgressSummary/ProgressSummary.jsx';
 import { curriculum, roadmap } from '../../data/curriculum.js';
 import styles from './RoadmapPage.module.css';
 
-const STORAGE_KEY = 'chagok-roadmap-v1';
+const STORAGE_KEY = 'chagok-language-roadmap-v1';
 const emptyRoadmap = { chapters: curriculum, completedIds: [], darkMode: false };
 
 function loadRoadmap() {
   try {
-    const saved = JSON.parse(localStorage.getItem(STORAGE_KEY));
+    const saved = JSON.parse(
+      localStorage.getItem(STORAGE_KEY) ?? localStorage.getItem('chagok-roadmap-v1'),
+    );
     if (saved && Array.isArray(saved.chapters) && Array.isArray(saved.completedIds)) {
+      // 기존 진행 상황과 사용자 편집은 유지하고 새 기본 항목만 한 번 추가합니다.
+      if (saved.curriculumVersion !== 2) {
+        const previousCounts = [8, 9, 9, 9, 8, 8];
+        saved.chapters = saved.chapters.map(chapter => {
+          const index = curriculum.findIndex(item => item.id === chapter.id);
+          if (index === -1) return chapter;
+          const newLessons = curriculum[index].lessons.slice(previousCounts[index]);
+          return {
+            ...chapter,
+            lessons: [
+              ...chapter.lessons,
+              ...newLessons.filter(lesson => !chapter.lessons.some(item => item.id === lesson.id)),
+            ],
+          };
+        });
+      }
       return saved;
     }
   } catch {
@@ -27,7 +46,6 @@ export default function RoadmapPage() {
   const [completedIds, setCompletedIds] = useState(() => new Set(saved.completedIds));
   const [darkMode, setDarkMode] = useState(Boolean(saved.darkMode));
   const [addingGoal, setAddingGoal] = useState(false);
-  const [goalTitle, setGoalTitle] = useState('');
 
   const lessons = chapters.flatMap(chapter => chapter.lessons);
   const completedCount = lessons.filter(lesson => completedIds.has(lesson.id)).length;
@@ -40,7 +58,7 @@ export default function RoadmapPage() {
     try {
       localStorage.setItem(
         STORAGE_KEY,
-        JSON.stringify({ chapters, completedIds: [...completedIds], darkMode }),
+        JSON.stringify({ curriculumVersion: 2, chapters, completedIds: [...completedIds], darkMode }),
       );
     } catch {
       // Saving is optional; the current session still works without it.
@@ -59,7 +77,7 @@ export default function RoadmapPage() {
     });
   }
 
-  function addGoal() {
+  function addGoal(goalTitle) {
     const title = goalTitle.trim();
     if (!title) return;
 
@@ -77,7 +95,6 @@ export default function RoadmapPage() {
 
       return [...previous, chapter];
     });
-    setGoalTitle('');
     setAddingGoal(false);
   }
 
@@ -118,11 +135,6 @@ export default function RoadmapPage() {
     });
   }
 
-  function submitGoal(event) {
-    event.preventDefault();
-    addGoal();
-  }
-
   return (
     <div className={styles.page}>
       <Header darkMode={darkMode} onToggleTheme={() => setDarkMode(value => !value)} />
@@ -132,9 +144,9 @@ export default function RoadmapPage() {
           <button
             className={styles.addGoal}
             type="button"
-            onClick={() => setAddingGoal(value => !value)}
+            onClick={() => setAddingGoal(true)}
             aria-expanded={addingGoal}
-            aria-controls="add-goal-panel"
+            aria-haspopup="dialog"
           >
             <svg
               width="20"
@@ -153,28 +165,7 @@ export default function RoadmapPage() {
         </div>
 
         {addingGoal && (
-          <form id="add-goal-panel" className={styles.goalForm} onSubmit={submitGoal}>
-            <input
-              autoFocus
-              aria-label="추가할 학습 목표"
-              placeholder="예: 웹 API 만들기"
-              value={goalTitle}
-              onChange={event => setGoalTitle(event.target.value)}
-              onKeyDown={event => {
-                if (event.key === 'Escape') setAddingGoal(false);
-              }}
-            />
-            <button type="submit" disabled={!goalTitle.trim()}>
-              추가
-            </button>
-            <button
-              className={styles.cancel}
-              type="button"
-              onClick={() => setAddingGoal(false)}
-            >
-              취소
-            </button>
-          </form>
+          <AddGoalModal onAdd={addGoal} onClose={() => setAddingGoal(false)} />
         )}
 
         <ProgressSummary completed={completedCount} total={lessons.length} />

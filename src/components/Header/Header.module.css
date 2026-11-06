@@ -1,6 +1,6 @@
 .header {
-  height: 70px;
-  border-bottom: 1px solid var(--line);
+  height: 82px;
+  border-bottom: 1px solid #dcecf6;
   background: var(--surface);
 }
 
@@ -20,42 +20,41 @@
   align-items: center;
   gap: 7px;
   color: var(--text);
-  font-size: 16px;
+  font-size: 22px;
   font-weight: 800;
   text-decoration: none;
 }
 
 .brandMark {
-  display: grid;
-  width: 24px;
-  height: 24px;
-  place-items: center;
-  border-radius: 5px;
-  background: var(--blue);
-  color: white;
+  display: block;
+  width: 40px;
+  height: 35px;
+  overflow: hidden;
+  flex-shrink: 0;
 }
 
 .navigation {
   position: absolute;
-  left: 50%;
+  left: calc(50% + 17px);
   display: flex;
-  gap: 10px;
+  gap: 16px;
   transform: translateX(-50%);
 }
 
 .navItem {
   display: grid;
-  width: 38px;
-  height: 30px;
+  width: 90px;
+  height: 38px;
   place-items: center;
   padding: 0;
   border: 0;
-  border-radius: 6px;
+  border-radius: 8px;
   background: var(--surface-blue);
 }
 
 .navItem:disabled { cursor: default; opacity: 1; }
-.navItem img { width: 22px; height: 22px; object-fit: contain; }
+.navItem img { width: 32px; height: 32px; object-fit: contain; }
+.logo { display: block; width: 109px; height: 35px; }
 .active { background: var(--active-blue); }
 
 .theme {
@@ -63,8 +62,8 @@
   align-items: center;
   justify-content: center;
   gap: 5px;
-  width: 66px;
-  height: 34px;
+  width: 76px;
+  height: 40px;
   margin-left: auto;
   border: 0;
   border-radius: 20px;
@@ -73,10 +72,10 @@
   font-size: 11px;
 }
 
-@media (max-width: 700px) {
+@media (max-width: 850px) {
   .inner { padding: 0 20px; }
   .navigation { position: static; gap: 5px; margin-left: 20px; transform: none; }
-  .navItem { width: 30px; }
+  .navItem { width: 38px; }
   .navItem img { width: 20px; height: 20px; }
   .theme { width: 60px; }
 }
@@ -85,5 +84,6 @@
   .navigation { gap: 3px; margin-left: 8px; }
   .navItem { width: 26px; height: 28px; }
   .brand { gap: 5px; font-size: 15px; }
-  .brandMark { width: 22px; height: 22px; }
+  .brandMark { width: 28px; height: 25px; }
+  .logo { width: 78px; height: 25px; }
 }

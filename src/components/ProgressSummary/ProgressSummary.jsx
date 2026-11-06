@@ -27,12 +27,12 @@ export default function ProgressSummary({ completed, total }) {
 
       <dl className={styles.stats} aria-live="polite">
         <div>
-          <dt className={styles.statLabel}>완료한 개념</dt>
-          <dd className={styles.statValue}>{completed}</dd>
-        </div>
-        <div>
           <dt className={styles.statLabel}>전체 개념</dt>
           <dd className={styles.statValue}>{total}</dd>
+        </div>
+        <div>
+          <dt className={styles.statLabel}>완료한 개념</dt>
+          <dd className={styles.statValue}>{completed}</dd>
         </div>
         <div>
           <dt className={styles.statLabel}>학습 진행률</dt>

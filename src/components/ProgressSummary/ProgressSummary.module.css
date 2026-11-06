@@ -2,27 +2,27 @@
   display: flex;
   min-height: 148px;
   align-items: center;
-  gap: 56px;
-  padding: 28px 60px;
-  border-radius: 14px;
+  gap: 64px;
+  padding: 34px 90px;
+  border-radius: 16px;
   background: var(--surface-blue);
 }
 
 .overview { flex: 1; min-width: 0; }
-.heading { display: flex; align-items: center; gap: 18px; }
+.heading { display: flex; align-items: center; gap: 20px; }
 .summaryTitle { font-size: 18px; font-weight: 700; letter-spacing: -.4px; }
 
 .icon {
   display: grid;
-  width: 58px;
-  height: 58px;
+  width: 56px;
+  height: 56px;
   flex-shrink: 0;
   place-items: center;
-  border-radius: 12px;
+  border-radius: 10px;
   background: var(--surface);
 }
 
-.icon img { width: 30px; height: 30px; object-fit: contain; }
+.icon img { width: 32px; height: 32px; object-fit: contain; }
 
 .track {
   height: 5px;
@@ -42,9 +42,10 @@
 
 .stats {
   display: flex;
-  width: 340px;
+  width: 390px;
   flex-shrink: 0;
   justify-content: space-between;
+  margin: 0;
 }
 
 .stats > div {
@@ -57,6 +58,11 @@
 
 .statLabel { color: var(--blue); font-size: 13px; white-space: nowrap; }
 .statValue { margin: 0; font-size: 30px; font-weight: 800; line-height: 1.2; }
+
+@media (max-width: 1200px) {
+  .summary { padding-inline: 40px; gap: 40px; }
+  .stats { width: 320px; }
+}
 
 @media (max-width: 950px) {
   .summary { gap: 28px; padding: 26px 32px; }

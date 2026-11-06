@@ -1,10 +1,11 @@
 :root {
+  scrollbar-gutter: stable;
   font-family: 'Pretendard', 'Noto Sans KR', 'Malgun Gothic', sans-serif;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  --page-bg: #ffffff;
+  --page-bg: #f3f9fd;
   --surface: #ffffff;
   --surface-blue: #e4f3fc;
   --text: #19364d;
