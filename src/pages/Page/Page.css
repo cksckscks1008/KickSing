@@ -1,0 +1,23 @@
+.roadmap-page {
+  padding: 56px 48px;
+}
+
+.roadmap-heading {
+  margin-bottom: 32px;
+}
+
+.roadmap-heading h1 {
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+@media (max-width: 600px) {
+  .roadmap-page {
+    padding: 32px 20px;
+  }
+
+  .roadmap-heading h1 {
+    font-size: 26px;
+  }
+}
