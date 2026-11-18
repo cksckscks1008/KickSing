@@ -1,49 +1,65 @@
 :root {
   scrollbar-gutter: stable;
   font-family: 'Pretendard', 'Noto Sans KR', 'Malgun Gothic', sans-serif;
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  --page-bg: #f3f9fd;
-  --surface: #ffffff;
-  --surface-blue: #e4f3fc;
-  --text: #19364d;
-  --blue: #2c8ae2;
-  --active-blue: #5ca3f8;
-  --line: #ccddff;
-  --nav-line: #dcecf6;
-  --theme-bg: #e4f3fc;
-  --theme-text: #5ca3f8;
-  --progress-icon-bg: #ffffff;
-  --progress-track: #97befa;
-  color: var(--text);
-  background: var(--page-bg);
+
+  --White: #ffffff;
+  --Background: #f3f9fd;
+  --Light: #e4f3fc;
+  --Liner: #ccdcfc;
+  --Secondary: #97befa;
+  --Primary: #5ca3f8;
+  --Middle: #2c8ae2;
+  --DarkTone: #2372bc;
+  --Darker: #1a5c99;
+  --Dark: #124778;
+  --DeepDark: #0b345a;
+  --TextColor: #062543;
+
+  color: var(--TextColor);
+  background: var(--Background);
   color-scheme: light;
 }
 
 :root[data-theme='dark'] {
-  --page-bg: #041c34;
-  --surface: #062543;
-  --surface-blue: #0b345a;
-  --text: #d3e4ff;
-  --blue: #64aaff;
-  --active-blue: #1a5c99;
-  --line: #527494;
-  --theme-bg: #124778;
-  --theme-text: #ccdcfc;
-  --progress-icon-bg: #1a5c99;
-  --progress-track: #124778;
+  color: var(--Liner);
+  background: #041c34;
   color-scheme: dark;
 }
 
-* { box-sizing: border-box; }
-body { min-width: 320px; margin: 0; }
-button, input { font: inherit; }
-button { color: inherit; cursor: pointer; -webkit-tap-highlight-color: transparent; }
-a, input { -webkit-tap-highlight-color: transparent; }
+* {
+  box-sizing: border-box;
+}
+
+body {
+  min-width: 320px;
+  margin: 0;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+button {
+  color: inherit;
+  cursor: pointer;
+}
+
+:is(button, a, input) {
+  -webkit-tap-highlight-color: transparent;
+}
+
 :is(button, a, input):focus-visible {
-  outline: 3px solid var(--blue);
+  outline: 3px solid var(--Middle);
   outline-offset: 3px;
 }
-h1, h2, p { margin: 0; }
+
+:root[data-theme='dark'] :is(button, a, input):focus-visible {
+  outline-color: var(--Primary);
+}
+
+h1,
+h2,
+p {
+  margin: 0;
+}

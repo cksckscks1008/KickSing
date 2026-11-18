@@ -1,6 +1,6 @@
 .navbar {
-  background: var(--surface);
-  box-shadow: inset 0 -1px var(--nav-line);
+  background: var(--White);
+  box-shadow: inset 0 -1px var(--Liner);
 }
 
 .navbar-inner {
@@ -57,13 +57,25 @@
   padding: 3px;
   border: 0;
   border-radius: 8px;
-  background: var(--surface-blue);
+  background: var(--Light);
   transition: background-color 150ms ease;
 }
 
 .navbar-block:hover,
 .navbar-block[aria-pressed='true'] {
-  background: var(--active-blue);
+  background: var(--Primary);
+}
+
+:root[data-theme='dark'] .navbar {
+  background: var(--TextColor);
+}
+
+:root[data-theme='dark'] .navbar-block {
+  background: var(--DeepDark);
+}
+
+:root[data-theme='dark'] .navbar-block:is(:hover, [aria-pressed='true']) {
+  background: var(--Darker);
 }
 
 .navbar-block img {

@@ -5,7 +5,7 @@
   min-height: 148px;
   padding: 28px 48px 28px 90px;
   border-radius: 16px;
-  background: var(--surface-blue);
+  background: var(--Light);
 }
 
 .progress-summary {
@@ -27,7 +27,7 @@
   width: 56px;
   height: 56px;
   border-radius: 10px;
-  background: var(--progress-icon-bg);
+  background: var(--White);
 }
 
 .progress-icon img {
@@ -47,13 +47,13 @@
   margin-top: 18px;
   overflow: hidden;
   border-radius: 999px;
-  background: var(--progress-track);
+  background: var(--Secondary);
 }
 
 .progress-fill {
   height: 100%;
   border-radius: inherit;
-  background: var(--blue);
+  background: var(--Middle);
 }
 
 .progress-stats {
@@ -75,8 +75,28 @@
 
 .progress-label {
   margin-top: 12px;
-  color: var(--blue);
+  color: var(--Middle);
   font-size: 14px;
+}
+
+:root[data-theme='dark'] .learning-progress {
+  background: var(--DeepDark);
+}
+
+:root[data-theme='dark'] .progress-icon {
+  background: var(--Darker);
+}
+
+:root[data-theme='dark'] .progress-track {
+  background: var(--Dark);
+}
+
+:root[data-theme='dark'] .progress-fill {
+  background: var(--Primary);
+}
+
+:root[data-theme='dark'] .progress-label {
+  color: var(--Primary);
 }
 
 @media (max-width: 1100px) {
