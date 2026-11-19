@@ -43,7 +43,6 @@
 .navbar-menu {
   display: flex;
   gap: 16px;
-  /* At 1440px, align the first block with the design's x=480. */
   transform: translateX(17px);
 }
 
