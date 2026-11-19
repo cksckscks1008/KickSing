@@ -110,6 +110,8 @@
 
 .card-item input {
   appearance: none;
+  display: grid;
+  place-content: center;
   flex-shrink: 0;
   width: 16px;
   height: 16px;
@@ -120,8 +122,18 @@
 }
 
 .card-item input:checked {
-  appearance: auto;
-  accent-color: var(--Middle);
+  background: var(--Middle);
+  border-color: var(--Middle);
+}
+
+.card-item input:checked::after {
+  content: '';
+  width: 5px;
+  height: 9px;
+  margin-top: -2px;
+  border-right: 2px solid var(--White);
+  border-bottom: 2px solid var(--White);
+  transform: rotate(45deg);
 }
 
 .card-item-title {
