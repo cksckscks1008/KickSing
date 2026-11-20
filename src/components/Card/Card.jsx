@@ -1,16 +1,17 @@
 import { useId, useState } from 'react';
 import './Card.css';
 
-export default function Card({ number, title, items, total = items.length }) {
+export default function Card({ number, title, items, onToggle }) {
   const [isOpen, setIsOpen] = useState(true);
   const contentId = useId();
+  const completed = items.filter((item) => item.completed).length;
 
   return (
     <div className="learning-card">
       <div className="card-header">
         <div className="card-number">{String(number).padStart(2, '0')}</div>
         <div className="card-title">{title}</div>
-        <div className="card-count">0 / {total}개 완료</div>
+        <div className="card-count">{completed} / {items.length}개 완료</div>
         <button type="button" className="card-delete" aria-label={`${title} 삭제`}>
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" aria-hidden="true">
             <path d="M4 6h16M9 6V3h6v3M6 6l1 15h10l1-15M10 10v7M14 10v7" />
@@ -32,7 +33,12 @@ export default function Card({ number, title, items, total = items.length }) {
         <div className="card-list">
           {items.map((item) => (
             <div className="card-item" key={item.id}>
-              <input type="checkbox" aria-label={item.title} />
+              <input
+                type="checkbox"
+                aria-label={item.title}
+                checked={item.completed}
+                onChange={() => onToggle(item.id)}
+              />
               <div className="card-item-title">{item.title}</div>
               <button type="button" className="card-item-delete" aria-label={`${item.title} 삭제`}>
                 <svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.7" aria-hidden="true">
