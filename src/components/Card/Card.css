@@ -157,6 +157,53 @@
   color: var(--Primary);
 }
 
+.card-add[hidden] {
+  display: none;
+}
+
+.card-item-editor {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.card-item-editor input {
+  flex: 1;
+  min-width: 0;
+  height: 38px;
+  padding: 0 12px;
+  border: 1px solid var(--Primary);
+  border-radius: 12px;
+  background: transparent;
+  color: inherit;
+  font-size: 14px;
+}
+
+.card-item-editor input:focus-visible {
+  outline: none;
+}
+
+:is(.card-add, .card-editor-actions button):focus-visible {
+  outline-width: 2px;
+  outline-offset: -2px;
+}
+
+.card-editor-actions {
+  display: flex;
+  flex-shrink: 0;
+  gap: 8px;
+}
+
+.card-editor-actions button {
+  white-space: nowrap;
+  height: 38px;
+  padding: 0 12px;
+  border: 1px solid var(--Primary);
+  border-radius: 12px;
+  background: transparent;
+}
+
 :root[data-theme='dark'] .learning-card {
   background: var(--TextColor);
   color: var(--Light);

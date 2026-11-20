@@ -29,6 +29,32 @@ export default function Page() {
     );
   }
 
+  function addItem(cardId, title) {
+    const trimmedTitle = title.trim();
+    if (!trimmedTitle) return;
+
+    const item = { id: crypto.randomUUID(), title: trimmedTitle, completed: false };
+    setCards((previous) =>
+      previous.map((card) =>
+        card.id === cardId ? { ...card, items: [...card.items, item] } : card,
+      ),
+    );
+  }
+
+  function deleteItem(cardId, itemId) {
+    setCards((previous) =>
+      previous.map((card) =>
+        card.id === cardId
+          ? { ...card, items: card.items.filter((item) => item.id !== itemId) }
+          : card,
+      ),
+    );
+  }
+
+  function deleteCard(cardId) {
+    setCards((previous) => previous.filter((card) => card.id !== cardId));
+  }
+
   return (
     <div className="roadmap-page">
       <div className="roadmap-heading">
@@ -43,6 +69,9 @@ export default function Page() {
             key={card.id}
             {...card}
             onToggle={(itemId) => toggleItem(card.id, itemId)}
+            onAdd={(title) => addItem(card.id, title)}
+            onDeleteItem={(itemId) => deleteItem(card.id, itemId)}
+            onDelete={() => deleteCard(card.id)}
           />
         ))}
       </div>
