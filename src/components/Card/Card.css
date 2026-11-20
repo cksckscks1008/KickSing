@@ -81,12 +81,12 @@
   transform: rotate(45deg);
 }
 
-.card-toggle[aria-expanded='false'] .card-chevron {
+.card-toggle[aria-expanded="false"] .card-chevron {
   margin-top: -5px;
   transform: rotate(225deg);
 }
 
-.card-header:has(.card-toggle[aria-expanded='false']) {
+.card-header:has(.card-toggle[aria-expanded="false"]) {
   border-bottom-color: transparent;
 }
 
@@ -127,7 +127,7 @@
 }
 
 .card-item input:checked::after {
-  content: '';
+  content: "";
   width: 5px;
   height: 9px;
   margin-top: -2px;
@@ -204,17 +204,17 @@
   background: transparent;
 }
 
-:root[data-theme='dark'] .learning-card {
+:root[data-theme="dark"] .learning-card {
   background: var(--TextColor);
   color: var(--Light);
 }
 
-:root[data-theme='dark'] :is(.card-number, .card-count) {
+:root[data-theme="dark"] :is(.card-number, .card-count) {
   background: var(--Dark);
-  color: var(--Liner);
+  color: var(--Light);
 }
 
-:root[data-theme='dark'] .card-add {
+:root[data-theme="dark"] .card-add {
   border-color: var(--Liner);
   color: var(--Liner);
 }

@@ -79,24 +79,25 @@
   font-size: 14px;
 }
 
-:root[data-theme='dark'] .learning-progress {
+:root[data-theme="dark"] .learning-progress {
   background: var(--DeepDark);
+  color: var(--Light);
 }
 
-:root[data-theme='dark'] .progress-icon {
+:root[data-theme="dark"] .progress-icon {
   background: var(--Darker);
 }
 
-:root[data-theme='dark'] .progress-track {
-  background: var(--Dark);
+:root[data-theme="dark"] .progress-track {
+  background: var(--Secondary);
 }
 
-:root[data-theme='dark'] .progress-fill {
-  background: var(--Primary);
+:root[data-theme="dark"] .progress-fill {
+  background: var(--Middle);
 }
 
-:root[data-theme='dark'] .progress-label {
-  color: var(--Primary);
+:root[data-theme="dark"] .progress-label {
+  color: var(--Light);
 }
 
 @media (max-width: 1100px) {

@@ -20,10 +20,9 @@ export default function ThemeToggle() {
     >
       <img
         className="theme-toggle-icon"
-        src={isDark ? "/images/theme-sun.svg" : "/images/theme-moon.svg"}
+        src={isDark ? "/images/theme-moon.svg" : "/images/theme-sun.svg"}
         alt=""
       />
-      <span aria-hidden="true">{isDark ? "ON" : "OFF"}</span>
     </button>
   );
 }

@@ -32,11 +32,11 @@
   display: none;
 }
 
-:root[data-theme='dark'] .navbar-brand .brand-light {
+:root[data-theme="dark"] .navbar-brand .brand-light {
   display: none;
 }
 
-:root[data-theme='dark'] .navbar-brand .brand-dark {
+:root[data-theme="dark"] .navbar-brand .brand-dark {
   display: block;
 }
 
@@ -61,19 +61,19 @@
 }
 
 .navbar-block:hover,
-.navbar-block[aria-pressed='true'] {
+.navbar-block[aria-pressed="true"] {
   background: var(--Primary);
 }
 
-:root[data-theme='dark'] .navbar {
+:root[data-theme="dark"] .navbar {
   background: var(--TextColor);
 }
 
-:root[data-theme='dark'] .navbar-block {
+:root[data-theme="dark"] .navbar-block {
   background: var(--DeepDark);
 }
 
-:root[data-theme='dark'] .navbar-block:is(:hover, [aria-pressed='true']) {
+:root[data-theme="dark"] .navbar-block:is(:hover, [aria-pressed="true"]) {
   background: var(--Darker);
 }
 
