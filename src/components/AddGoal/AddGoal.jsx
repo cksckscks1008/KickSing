@@ -1,8 +1,8 @@
 import './AddGoal.css';
 
-export default function AddGoal() {
+export default function AddGoal({ onAdd }) {
   return (
-    <button type="button" className="add-goal">
+    <button type="button" className="add-goal" onClick={onAdd}>
       <svg
         width="20"
         height="20"

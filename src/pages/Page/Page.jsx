@@ -12,6 +12,20 @@ export default function Page() {
   const total = allItems.length;
   const completed = allItems.filter((item) => item.completed).length;
 
+  function addGoal() {
+    const id = crypto.randomUUID();
+
+    setCards((previous) => [
+      ...previous,
+      {
+        id,
+        number: Math.max(0, ...previous.map((card) => card.number)) + 1,
+        title: "새 학습 목표",
+        items: [],
+      },
+    ]);
+  }
+
   function toggleItem(cardId, itemId) {
     setCards((previous) =>
       previous.map((card) =>
@@ -59,7 +73,7 @@ export default function Page() {
     <div className="roadmap-page">
       <div className="roadmap-heading">
         <h1>언어 학습 로드맵</h1>
-        <AddGoal />
+        <AddGoal onAdd={addGoal} />
       </div>
 
       <Progress conceptCount={total} total={total} completed={completed} />
