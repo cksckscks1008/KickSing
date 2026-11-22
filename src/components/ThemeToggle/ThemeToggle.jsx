@@ -1,13 +1,28 @@
 import { useEffect, useState } from "react";
 import "./ThemeToggle.css";
 
+const themeKey = "charsing-theme";
+
+function loadTheme() {
+  try {
+    return localStorage.getItem(themeKey) === "dark";
+  } catch {
+    return false;
+  }
+}
+
 export default function ThemeToggle() {
-  const [isDark, setIsDark] = useState(
-    () => document.documentElement.dataset.theme === "dark",
-  );
+  const [isDark, setIsDark] = useState(loadTheme);
 
   useEffect(() => {
-    document.documentElement.dataset.theme = isDark ? "dark" : "light";
+    const theme = isDark ? "dark" : "light";
+    document.documentElement.dataset.theme = theme;
+
+    try {
+      localStorage.setItem(themeKey, theme);
+    } catch (error) {
+      console.warn("테마를 저장하지 못했습니다.", error);
+    }
   }, [isDark]);
 
   return (

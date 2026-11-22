@@ -1,12 +1,36 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Progress from "../../components/Progress/Progress";
 import Card from "../../components/Card/Card";
 import AddGoal from "../../components/AddGoal/AddGoal";
 import initCards from "../../data/roadmap";
 import "./Page.css";
 
+const storageKey = "charsing-cards";
+
+function loadCards() {
+  try {
+    const saved = JSON.parse(localStorage.getItem(storageKey));
+
+    if (Array.isArray(saved) && saved.every((card) => Array.isArray(card?.items))) {
+      return saved;
+    }
+  } catch {
+    return initCards;
+  }
+
+  return initCards;
+}
+
 export default function Page() {
-  const [cards, setCards] = useState(initCards);
+  const [cards, setCards] = useState(loadCards);
+
+  useEffect(() => {
+    try {
+      localStorage.setItem(storageKey, JSON.stringify(cards));
+    } catch (error) {
+      console.warn("학습 목표를 저장하지 못했습니다.", error);
+    }
+  }, [cards]);
 
   const allItems = cards.flatMap((card) => card.items);
   const total = allItems.length;
