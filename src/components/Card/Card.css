@@ -48,6 +48,27 @@
   white-space: nowrap;
 }
 
+.card-title-input {
+  color: inherit;
+  background: transparent;
+  border: 0;
+  border-radius: 4px;
+  padding: 0;
+}
+
+.card-highlight {
+  flex: 0 0 20px;
+  height: 20px;
+  padding: 0;
+  border: 0;
+  background-color: #999999;
+  mask: url('/images/highlight.svg') center / contain no-repeat;
+}
+
+:root[data-theme='dark'] .card-highlight {
+  background-color: #808080;
+}
+
 .card-delete,
 .card-item-delete {
   flex-shrink: 0;

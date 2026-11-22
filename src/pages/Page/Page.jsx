@@ -69,6 +69,12 @@ export default function Page() {
     setCards((previous) => previous.filter((card) => card.id !== cardId));
   }
 
+  function renameCard(cardId, title) {
+    setCards((previous) =>
+      previous.map((card) => card.id === cardId ? { ...card, title } : card),
+    );
+  }
+
   return (
     <div className="roadmap-page">
       <div className="roadmap-heading">
@@ -86,6 +92,7 @@ export default function Page() {
             onAdd={(title) => addItem(card.id, title)}
             onDeleteItem={(itemId) => deleteItem(card.id, itemId)}
             onDelete={() => deleteCard(card.id)}
+            onRename={(title) => renameCard(card.id, title)}
           />
         ))}
       </div>
