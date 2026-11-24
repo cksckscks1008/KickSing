@@ -61,7 +61,7 @@
 }
 
 .navbar-block:hover,
-.navbar-block[aria-pressed="true"] {
+.navbar-block[aria-current="page"] {
   background: var(--Primary);
 }
 
@@ -73,7 +73,7 @@
   background: var(--DeepDark);
 }
 
-:root[data-theme="dark"] .navbar-block:is(:hover, [aria-pressed="true"]) {
+:root[data-theme="dark"] .navbar-block:is(:hover, [aria-current="page"]) {
   background: var(--Darker);
 }
 

@@ -5,10 +5,8 @@ import AddGoal from "../../components/AddGoal/AddGoal";
 import initCards from "../../data/roadmap";
 import "./Page.css";
 
-const storageKey = "charsing-cards";
-
 // 저장된 카드를 불러오고 읽기 실패 시 기본 목록 사용
-function loadCards() {
+function loadCards(storageKey, fallbackCards) {
   try {
     const saved = JSON.parse(localStorage.getItem(storageKey));
 
@@ -16,15 +14,19 @@ function loadCards() {
       return saved;
     }
   } catch {
-    return initCards;
+    return fallbackCards;
   }
 
-  return initCards;
+  return fallbackCards;
 }
 
 // 학습 카드 목록과 전체 진행 상태 관리
-export default function Page() {
-  const [cards, setCards] = useState(loadCards);
+export default function Page({ language, name, icon }) {
+  const isPython = language === "python";
+  const storageKey = isPython ? "charsing-cards" : `charsing-cards-${language}`;
+  const [cards, setCards] = useState(() =>
+    loadCards(storageKey, isPython ? initCards : []),
+  );
 
   useEffect(() => {
     try {
@@ -32,7 +34,7 @@ export default function Page() {
     } catch (error) {
       console.warn("학습 목표를 저장하지 못했습니다.", error);
     }
-  }, [cards]);
+  }, [cards, storageKey]);
 
   const allItems = cards.flatMap((card) => card.items);
   const total = allItems.length;
@@ -110,11 +112,11 @@ export default function Page() {
   return (
     <div className="roadmap-page">
       <div className="roadmap-heading">
-        <h1>언어 학습 로드맵</h1>
+        <h1>{name} 학습 로드맵</h1>
         <AddGoal onAdd={addGoal} />
       </div>
 
-      <Progress conceptCount={total} total={total} completed={completed} />
+      <Progress conceptCount={total} total={total} completed={completed} icon={icon} />
       <div className="card-grid">
         {cards.map((card) => (
           <Card

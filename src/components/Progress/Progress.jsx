@@ -1,7 +1,7 @@
 import './Progress.css';
 
 // 학습 개념 수와 완료율 표시
-export default function Progress({ conceptCount, total, completed }) {
+export default function Progress({ conceptCount, total, completed, icon }) {
   const percentage =
     total > 0 ? Math.min(100, Math.round((completed / total) * 100)) : 0;
 
@@ -16,7 +16,7 @@ export default function Progress({ conceptCount, total, completed }) {
       <div className="progress-summary">
         <div className="progress-heading">
           <div className="progress-icon">
-            <img src="/images/python-logo.svg" alt="" />
+            <img src={`/images/${icon}`} alt="" />
           </div>
 
           <h2>지금부터 쌓아갈 {conceptCount}개의 개념</h2>
