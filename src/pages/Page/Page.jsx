@@ -7,6 +7,7 @@ import "./Page.css";
 
 const storageKey = "charsing-cards";
 
+// 저장된 카드를 불러오고 읽기 실패 시 기본 목록 사용
 function loadCards() {
   try {
     const saved = JSON.parse(localStorage.getItem(storageKey));
@@ -21,6 +22,7 @@ function loadCards() {
   return initCards;
 }
 
+// 학습 카드 목록과 전체 진행 상태 관리
 export default function Page() {
   const [cards, setCards] = useState(loadCards);
 
@@ -36,6 +38,7 @@ export default function Page() {
   const total = allItems.length;
   const completed = allItems.filter((item) => item.completed).length;
 
+  // 목록 끝에 빈 학습 목표 카드 추가
   function addGoal() {
     const id = crypto.randomUUID();
 
@@ -50,6 +53,7 @@ export default function Page() {
     ]);
   }
 
+  // 선택한 학습 개념의 완료 상태 변경
   function toggleItem(cardId, itemId) {
     setCards((previous) =>
       previous.map((card) =>
@@ -67,6 +71,7 @@ export default function Page() {
     );
   }
 
+  // 지정한 카드에 미완료 학습 개념 추가
   function addItem(cardId, title) {
     const trimmedTitle = title.trim();
     if (!trimmedTitle) return;
@@ -79,6 +84,7 @@ export default function Page() {
     );
   }
 
+  // 지정한 카드에서 선택한 학습 개념 삭제
   function deleteItem(cardId, itemId) {
     setCards((previous) =>
       previous.map((card) =>
@@ -89,10 +95,12 @@ export default function Page() {
     );
   }
 
+  // 선택한 학습 목표 카드 삭제
   function deleteCard(cardId) {
     setCards((previous) => previous.filter((card) => card.id !== cardId));
   }
 
+  // 선택한 학습 목표 카드의 제목 변경
   function renameCard(cardId, title) {
     setCards((previous) =>
       previous.map((card) => card.id === cardId ? { ...card, title } : card),

@@ -1,5 +1,6 @@
 import './AddGoal.css';
 
+// 학습 목표 추가 버튼 표시
 export default function AddGoal({ onAdd }) {
   return (
     <button type="button" className="add-goal" onClick={onAdd}>

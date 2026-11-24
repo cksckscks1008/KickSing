@@ -2,6 +2,7 @@ import { useState } from 'react';
 import ThemeToggle from '../ThemeToggle/ThemeToggle';
 import './Navbar.css';
 
+// 학습 메뉴와 테마 전환 버튼 표시
 export default function Navbar() {
   const [activeMenu, setActiveMenu] = useState(3);
 

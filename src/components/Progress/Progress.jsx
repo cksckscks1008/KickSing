@@ -1,5 +1,6 @@
 import './Progress.css';
 
+// 학습 개념 수와 완료율 표시
 export default function Progress({ conceptCount, total, completed }) {
   const percentage =
     total > 0 ? Math.min(100, Math.round((completed / total) * 100)) : 0;

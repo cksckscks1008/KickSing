@@ -1,6 +1,7 @@
 import { useId, useState } from 'react';
 import './Card.css';
 
+// 학습 목표와 개념 표시 및 편집 처리
 export default function Card({ number, title, items, onToggle, onAdd, onDeleteItem, onDelete, onRename }) {
   const [isEditingTitle, setIsEditingTitle] = useState(false);
   const [isOpen, setIsOpen] = useState(true);
@@ -9,11 +10,13 @@ export default function Card({ number, title, items, onToggle, onAdd, onDeleteIt
   const contentId = useId();
   const completed = items.filter((item) => item.completed).length;
 
+  // 개념 입력값 초기화 및 입력창 닫기
   function closeInput() {
     setNewTitle('');
     setIsAdding(false);
   }
 
+  // 공백을 정리한 개념 제목 추가 및 입력창 닫기
   function submitItem() {
     if (!newTitle.trim()) return;
     onAdd(newTitle.trim());

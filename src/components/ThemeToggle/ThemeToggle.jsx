@@ -3,6 +3,7 @@ import "./ThemeToggle.css";
 
 const themeKey = "charsing-theme";
 
+// 저장된 테마를 읽어 다크모드 여부 반환
 function loadTheme() {
   try {
     return localStorage.getItem(themeKey) === "dark";
@@ -11,6 +12,7 @@ function loadTheme() {
   }
 }
 
+// 테마 전환 및 선택한 모드 저장
 export default function ThemeToggle() {
   const [isDark, setIsDark] = useState(loadTheme);
 
